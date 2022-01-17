@@ -24,13 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = "";
-//$config['base_url'] = 'https://10.136.125.108/PasswordListv2/';
-/*
-if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443)
-	$config['base_url'] = 'https://'.$_SERVER['HTTP_HOST'].'/PasswordListv2/';
-else 
-	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/PasswordListv2/';
-*/
+
 /*
 |--------------------------------------------------------------------------
 | Index File

@@ -47,7 +47,7 @@
 		</div>
 		<div class="login-form">
 			<?php echo form_open() ?>
-				<h2 class="text-center">SecurePass Log in</h2>
+				<h2 class="text-center">Log in</h2>
 					<div class="form-group">
 						<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="required"> </div>
 					<div class="form-group">
