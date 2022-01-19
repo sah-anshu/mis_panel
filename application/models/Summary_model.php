@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
   
-class Password_model extends CI_Model
+class Summary_model extends CI_Model
 {
   
     public function __construct()
@@ -10,20 +10,20 @@ class Password_model extends CI_Model
         $this->load->database();
 
         // Set table name
-        $this->table = 'PasswordList';
+        $this->table = 'mt_summary';
 
         // Set orderable column fields
-        $this->column_order = array('Application','SAPSID','SAPClient','URL','UserName','Password');
+        $this->column_order = array('crm_id','user_id','sendondate','status','totalcredits','billcredits');
 
         // Set searchable column fields
-        $this->column_search = array('Application','SAPSID','SAPClient','URL','UserName','Password','Notes', 'last_updated_timestamp');
+        $this->column_search = array('user_id','status');
 
         // Set default order
         $this->order = array('id' => 'desc');
     }
   
   
-    public function get_all_passwords()
+    public function get_all_summary()
     {
         $this->db->from($this->table);
         $query=$this->db->get();
@@ -48,7 +48,7 @@ class Password_model extends CI_Model
  
     public function update($data)
     {
-        $where = array('id' => $this->input->post('password_id'));
+        $where = array('id' => $this->input->post('summary_id'));
          $this->db->update($this->table, $data, $where);
          return $this->db->affected_rows();
  
@@ -56,7 +56,7 @@ class Password_model extends CI_Model
   
     public function delete()
     {
-        $id = $this->input->post('password_id');
+        $id = $this->input->post('summary_id');
         $this->db->where('id', $id);
         $this->db->delete($this->table);
     }
@@ -74,7 +74,6 @@ class Password_model extends CI_Model
             $this->db->limit($postData['length'], $postData['start']);
         }
         
-        //$this->db->join('users', 'PasswordList.last_updated_by = users.user_id', 'left');
         $query = $this->db->get();
         return $query->result();
     }

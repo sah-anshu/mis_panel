@@ -186,7 +186,7 @@ class User extends CI_Controller {
 				$this->session->set_userdata($logged_in_data);
 
 				// user login ok
-				redirect('password'); //if session is not there, redirect to login page
+				redirect('summary'); //if session is not there, redirect to login page
 				
 			} else {
 				

@@ -55,6 +55,6 @@ $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
 $route['reset_password'] = 'user/reset_password';
 
-$route['default_controller'] = 'password';
+$route['default_controller'] = 'summary';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

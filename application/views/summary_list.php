@@ -51,34 +51,27 @@
         <thead>
           <tr>
             
-            <th>AppName</th>
-            <th>SAPSID</th>
-            <th>SAPClient</th>
-            <th>URL</th>
-            <th>UserID</th>
-            <th>Password</th>
+            <th>Date</th>
+            <th>User ID</th>
+            <th>Status</th>
+            <th>No. Of SMS</th>
+            <th>Credit Used</th>
            
-            <th>Notes</th>
-            <th>Last Updated</th>
             <?php if ($_SESSION['is_admin'] === true) : ?> <th>Action</th> <?php endif; ?>
 
           </tr>
         </thead>
         <tbody> 
-            <?php if($passwords): ?> 
-            <?php foreach($passwords as $password):?> 
+            <?php if($summary): ?> 
+            <?php foreach($summary as $password):?> 
             <tr id="password_id_<?php echo $password->id;?>">
                  
-                <td> <?php echo $password->Application;?> </td>
-                <td> <?php echo $password->SAPSID;?> </td>
-                <td> <?php echo $password->SAPClient;?> </td>
+                <td> <?php echo $password->sendondate;?> </td>
+                <td> <?php echo $password->user_id;?> </td>
+                <td> <?php echo $password->status;?> </td>
 
-                <td> <?php echo $password->URL;?> </td>
-                <td> <?php echo $password->UserName;?> </td>
-                <td> <?php echo $password->Password;?> </td>
-                
-                <td> <?php echo $password->Notes;?> </td>
-                <td> <?php echo $password->last_updated_timestamp; ?> </td>
+                <td> <?php echo $password->totalcredits;?> </td>
+                <td> <?php echo $password->billcredits;?> </td>
 
                 <?php if ($_SESSION['is_admin'] === true) : ?>
                 <td>
@@ -188,12 +181,12 @@ $(document).ready(function() {
         "order": [],
         // Load data from an Ajax source
         "ajax": {
-            "url": SITEURL + "index.php/password/getLists/",
+            "url": SITEURL + "index.php/summary/getLists/",
             "type": "POST"
         },
         'aoColumnDefs': [
             { 
-                "aTargets": [7], //column index counting from the left
+                "aTargets": [0], //column index counting from the left
                 "sType": 'date',
                 "fnRender": function ( dateObj ) {
                     var oDate = new Date(dateObj.aData[0]);
@@ -203,16 +196,10 @@ $(document).ready(function() {
             },          
             {
                 'bSortable': false,
-                'aTargets': [-1, -2, -3, -4]  
+                'aTargets': [-1,]  
             }
         ],
 
-    });
-
-    $('#password_list tbody').on('click', 'tr', function () {
-        var password_value = $('td', this).eq(5).find('a');
-        if(password_value.length)
-            $('td', this).eq(5).text(atob(password_value.data("txt")));
     });
 
     $('#password_list tbody').on( 'hover', 'tr', function () {
